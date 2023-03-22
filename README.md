@@ -10,4 +10,4 @@ To adapt to Ubuntu 22.04 LTS. Because it uses iptables (v1.8.4) just support nf_
 
 ## How to use this image
 1 - download weave-daemonset-k8s.yaml from https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml  
-2 - edit it by replacing all weave-kube with highcanfly/weave-kube
+2 - edit it by replacing all weaveworks/weave-kube with highcanfly/weave-kube
