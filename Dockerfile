@@ -2,13 +2,14 @@ FROM weaveworks/weave-kube:2.8.1 as builder
 
 FROM alpine:latest
 LABEL maintainer="Ronan Le Meillat <ronan.le_meillat@highcanfly.club>" 
-RUN apk add --update \
+RUN apk add --update curl iproute2 conntrack-tools bind-tools ca-certificates \
     iptables \
     ipset \
 	ulogd \
   && rm -rf /var/cache/apk/* \
   && mknod /var/log/ulogd.pcap p
 COPY --from=builder /home/weave /home/weave/
+COPY --from=builder /usr/bin/weaveutil /usr/bin/weaveutil
 RUN cd /sbin && \
     rm -f /sbin/iptables /sbin/ip6tables /sbin/iptables-save /sbin/iptables-restore &&\
     ln -f -s xtables-nft-multi /sbin/iptables && \
